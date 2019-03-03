@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <Nav isAuthenticated={this.props.isAuthenticated} />
+          <Nav authenticated={this.props.authenticated} />
           <Route exact path='/movies' component={MoviesContainer} /> 
           <Route path='/login' component={LoginForm} />        
           <Route path='/signup' component={RegistrationForm} />               
@@ -23,7 +23,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.auth.isAuthenticated,
+    authenticated: state.auth.authenticated,
     user: state.auth.currentUser
   }
 }
