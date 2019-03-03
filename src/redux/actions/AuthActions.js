@@ -35,16 +35,23 @@ export const signup = user => {
   
   return dispatch => {    
     return fetch(request)
-      .then(response => response.json())
-      .then(() => {
-        return dispatch(authenticate({
-          name: newUser.name,
-          email: newUser.email,
-          password: newUser.password 
-        }));
+      .then(response => {
+        if (response.status === 201) {
+          return response.json()      
+            .then(() => {
+              return dispatch(authenticate({
+                name: newUser.name,
+                email: newUser.email,
+                password: newUser.password 
+              }));
+            })
+        } else {
+          throw new Error('Failed to signup');
+        }
       })
       .catch(errors => {
         dispatch(authFailure(errors))
+        return { errors: errors };
       })
   };
 }
@@ -60,17 +67,24 @@ export const authenticate = credentials => {
   return dispatch => {
     dispatch(authRequest());
     return fetch(request)
-      .then(response => response.json())
-      .then(json => {
-          const token = json.jwt;
-          console.log(token)
-          localStorage.setItem('token', token);
-          return getUser(credentials)
-      })
-      .then(user => {
-        console.log(user);
-        dispatch(authSuccess(user, localStorage.token));
-        return user
+      .then(response => {
+        console.log(response);
+        if (response.status === 201) {
+          return response.json()
+          .then(json => {
+              const token = json.jwt;
+              console.log(token)
+              localStorage.setItem('token', token);
+              return getUser(credentials)
+          })
+          .then(user => {
+            console.log(user);
+            dispatch(authSuccess(user, localStorage.token));
+            return user;         
+          })
+        } else {
+          throw new Error('Failed to authenticate');
+        }
       })
       .catch(errors => {
           dispatch(authFailure(errors));

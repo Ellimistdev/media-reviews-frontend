@@ -2,6 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/actions/AuthActions';
+import ErrorMessage from './ErrorMessage';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class LoginForm extends React.Component {
     this.state = {
       email: '',
       password: '',
+      errors: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,13 +37,17 @@ class LoginForm extends React.Component {
     })
     .catch(errors => {
       console.log('login returned false.')
-      console.log(errors)
+      this.setState({       
+        errors: [errors.message]
+      });
+      console.log(this.state.errors)
     })
   }
 
   render() {
-    return (
+    return (      
       <form onSubmit={this.handleSubmit}>
+        <ErrorMessage errors={this.state.errors} />
         <label>
           Email:
           <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
