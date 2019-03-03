@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Nav from './components/Nav';
+import MoviesContainer from './containers/MoviesContainer'
+import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className='App'>
+          <Nav authenticated={this.props.authenticated} />
+          <Route exact path='/movies' component={MoviesContainer} /> 
+          <Route path='/login' component={LoginForm} />        
+          <Route path='/signup' component={RegistrationForm} />               
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    authenticated: state.auth.authenticated,
+    user: state.auth.currentUser
+  }
+}
+
+
+export default App = connect(mapStateToProps, null)(App);
