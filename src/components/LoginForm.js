@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
       if (response.hasOwnProperty('errors')) {
         throw response.errors;
       } else {
-        this.props.history.push('/profile')
+        this.props.history.push(`/users/${response.id}`)
         console.log('login returned true.')
       }
     })
