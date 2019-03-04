@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import MoviesContainer from './containers/MoviesContainer'
+import MovieContainer from './containers/MovieContainer';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 
@@ -13,6 +14,7 @@ class App extends Component {
         <div className='App'>
           <Nav authenticated={this.props.authenticated} />
           <Route exact path='/movies' component={MoviesContainer} /> 
+          <Route path='/movies/:id' component={MovieContainer} /> 
           <Route path='/login' component={LoginForm} />        
           <Route path='/signup' component={RegistrationForm} />               
         </div>
@@ -21,10 +23,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     authenticated: state.auth.authenticated,
-    user: state.auth.currentUser
+    // user: state.auth.currentUser
   }
 }
 
