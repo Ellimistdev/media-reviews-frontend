@@ -14,6 +14,13 @@ export default (state = initialState, action) => {
         reviews: action.user.reviews,
         views: action.user.views,
       };
+    case "UPDATE_USER_SUCCESS":
+      return {
+        ...state,
+        data: action.user,
+        reviews: action.user.reviews,
+        views: action.user.views,
+      };
     default:
       return state;
   }
