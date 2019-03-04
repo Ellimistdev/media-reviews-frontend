@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Nav from './components/Nav';
+import NavComponent from './components/NavComponent';
 import MoviesContainer from './containers/MoviesContainer'
 import MovieContainer from './containers/MovieContainer';
 import UserContainer from './containers/UserContainer';
@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <Nav auth={this.props.auth} />
+          <NavComponent auth={this.props.auth} />
           <Route exact path='/movies' component={MoviesContainer} /> 
           <Route path='/movies/:id' component={MovieContainer} /> 
           <Route exact path='/users/:id' component={UserContainer} /> 

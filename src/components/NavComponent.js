@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
 import { logout } from '../redux/actions/AuthActions';
 
-class Nav extends Component {
+class NavComponent extends Component {
   handleLogout = event => {
     event.preventDefault();
     this.props.logout();
@@ -37,4 +37,4 @@ class Nav extends Component {
 }
 
 
-export default Nav = withRouter(connect(null, {logout})(Nav));
+export default NavComponent = withRouter(connect(null, {logout})(NavComponent));
