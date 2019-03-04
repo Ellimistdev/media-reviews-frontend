@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
-import { fetchMovies } from '../redux/actions/MoviesActions';
+import { fetchMovies } from '../redux/actions/MovieActions';
 
 class MoviesContainer extends Component {
   
