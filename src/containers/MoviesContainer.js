@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { fetchMovies } from '../redux/actions/MoviesActions';
 
 class MoviesContainer extends Component {
@@ -17,7 +17,7 @@ class MoviesContainer extends Component {
       <ul>
         {this.props.movies.map(movie => (
           <li key={movie.id}>
-            <p>Title: {movie.title}</p>
+            <h4>Title:<Link to={`/movies/${movie.id}`}>{movie.title}</Link></h4>
             <p>ID: {movie.id} | TMDB ID: {movie.tmdb_id}</p>
           </li>
           ))}
