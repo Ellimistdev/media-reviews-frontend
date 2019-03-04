@@ -20,7 +20,7 @@ class Nav extends Component {
 
     const authNav = (
       <React.Fragment>
-        <li><Link to='/profile'>Profile</Link></li>
+        <li><Link to={`/users/${this.props.auth.user.id}`}>Profile</Link></li>
         <li><Link to='/' onClick={this.handleLogout}>Logout</Link></li>
       </React.Fragment>
     );
@@ -29,7 +29,7 @@ class Nav extends Component {
       <nav>
         <ul>
           <li><Link to='/movies'>Movies</Link></li>
-          {this.props.authenticated ? authNav : nonAuthNav}
+          {this.props.auth.authenticated ? authNav : nonAuthNav}
         </ul>
       </nav>
     );
