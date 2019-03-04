@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMovies } from '../redux/actions/MoviesActions'
+import { withRouter } from "react-router-dom";
+import { fetchMovies } from '../redux/actions/MoviesActions';
 
 class MoviesContainer extends Component {
-  state = {
-    movies: []
-  }
   
   componentDidMount() {
     this.props.fetchMovies();
@@ -30,8 +28,8 @@ class MoviesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.movies
+    movies: state.media.movies
   }
 }
 
-export default connect(mapStateToProps, { fetchMovies })(MoviesContainer)
+export default withRouter(connect(mapStateToProps, { fetchMovies })(MoviesContainer));
