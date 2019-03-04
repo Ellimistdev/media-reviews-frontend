@@ -18,7 +18,7 @@ class UserContainer extends Component {
     }
     return (
       <div className='user-container'>
-        <UserComponent user={this.props.user} />
+        <UserComponent user={this.props.user} auth={this.props.auth} />
         <ReviewsContainer reviews={this.props.reviews} type={'user'}/>
         <ViewsContainer views={this.props.views} />
       </div>
@@ -30,7 +30,8 @@ const mapStateToProps = state => {
   return {
     user: state.user.data,
     reviews: state.user.reviews,
-    views: state.user.views
+    views: state.user.views,
+    auth: state.auth,
   }
 }
 

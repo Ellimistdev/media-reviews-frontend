@@ -5,8 +5,8 @@
 [x] Patch existing user
 [x] Render reviews on User show
 [x] Render views on User show
+[x] do not show edit if not owner
 [ ] redirect from users/:id/edit if not owner
-[ ] do not show edit if not owner
 
 ## Reviews
 [ ] Create new review form
