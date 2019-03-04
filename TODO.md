@@ -1,10 +1,12 @@
 # Todo:
 ## Users
 [x] Render user info on User show
-[ ] Create edit user form
-[ ] Patch existing user
+[x] Create edit user form
+[x] Patch existing user
 [x] Render reviews on User show
 [x] Render views on User show
+[ ] redirect from users/:id/edit if not owner
+[ ] do not show edit if not owner
 
 ## Reviews
 [ ] Create new review form

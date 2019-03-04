@@ -7,6 +7,7 @@ import MovieContainer from './containers/MovieContainer';
 import UserContainer from './containers/UserContainer';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
+import EditUserComponent from './components/EditUserComponent';
 
 class App extends Component {
   render() {
@@ -16,7 +17,8 @@ class App extends Component {
           <Nav authenticated={this.props.authenticated} />
           <Route exact path='/movies' component={MoviesContainer} /> 
           <Route path='/movies/:id' component={MovieContainer} /> 
-          <Route path='/users/:id' component={UserContainer} /> 
+          <Route exact path='/users/:id' component={UserContainer} /> 
+          <Route path='/users/:id/edit' render={() => <EditUserComponent user={this.props.user} />} /> 
           <Route path='/login' component={LoginForm} />        
           <Route path='/signup' component={RegistrationForm} />               
         </div>
@@ -28,7 +30,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     authenticated: state.auth.authenticated,
-    // user: state.auth.user
+    user: state.auth.user
   }
 }
 
