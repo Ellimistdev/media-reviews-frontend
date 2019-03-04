@@ -18,7 +18,7 @@ class MovieContainer extends Component {
     return (
       <div className='movie-container'>
         <MovieComponent movie={this.props.movie} />
-        <ReviewsContainer reviews={this.props.reviews} />
+        <ReviewsContainer reviews={this.props.reviews} type={'movie'}/>
       </div>
     )
   }  
