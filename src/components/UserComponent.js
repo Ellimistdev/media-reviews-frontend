@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link, withRouter } from "react-router-dom";
 
 const UserComponent = props => {  
   return (
     <div className='user'> 
-      <p>Email: {props.user.email}</p>
+      <p>Email: {props.user.email} <Link to={`/users/${props.user.id}/edit`}>Edit</Link></p>
     </div>
   );
 }
 
-export default UserComponent;
+export default withRouter(UserComponent);
