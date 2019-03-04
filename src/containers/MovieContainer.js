@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { fetchMovie } from '../redux/actions/MoviesActions';
-// import ReviewsContainer from './ReviewsContainer';
+import ReviewsContainer from './ReviewsContainer';
 import MovieComponent from '../components/MovieComponent';
 
 class MovieContainer extends Component {
@@ -18,7 +18,7 @@ class MovieContainer extends Component {
     return (
       <div className='movie-container'>
         <MovieComponent movie={this.props.movie} />
-        {/* <ReviewsContainer reviews={this.state.reviews} /> */}
+        <ReviewsContainer reviews={this.props.reviews} />
       </div>
     )
   }  
@@ -26,7 +26,8 @@ class MovieContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    movie: state.media.movie
+    movie: state.media.movie,
+    reviews: state.media.reviews
   }
 }
 
