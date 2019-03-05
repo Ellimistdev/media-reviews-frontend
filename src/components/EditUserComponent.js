@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { updateUser } from '../redux/actions/UserActions';
-import ErrorMessage from './ErrorMessage';
+import ErrorComponent from './ErrorComponent';
 import * as types from '../constants/ActionTypes'
 
 class EditUserComponent extends React.Component {
@@ -47,7 +47,7 @@ class EditUserComponent extends React.Component {
   render() {
     const updateForm = (
       <form onSubmit={this.handleSubmit}>
-        <ErrorMessage errors={this.state.errors} />
+        <ErrorComponent errors={this.state.errors} />
         <label>
           Email:
           <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />

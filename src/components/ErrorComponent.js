@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ErrorMessage = props => {      
+const ErrorComponent = props => {      
   const errorList = () => {
     if (props.errors) {
       return props.errors.map((error, index) => {
@@ -12,4 +12,4 @@ const ErrorMessage = props => {
   return ( <ul className='errors-list'>{errorList()}</ul> );
 };
 
-export default ErrorMessage;
+export default ErrorComponent;

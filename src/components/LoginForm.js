@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/actions/AuthActions';
-import ErrorMessage from './ErrorMessage';
+import ErrorComponent from './ErrorComponent';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
   render() {
     return (      
       <form onSubmit={this.handleSubmit}>
-        <ErrorMessage errors={this.state.errors} />
+        <ErrorComponent errors={this.state.errors} />
         <label>
           Email:
           <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
