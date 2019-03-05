@@ -1,3 +1,5 @@
+import * as types from '../../constants/ActionTypes';
+
 const initialState = {
   data: {},
   reviews: [],
@@ -7,19 +9,24 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_USER_SUCCESS":
+    case types.FETCH_USER_SUCCESS:
       return {
         ...state,
         data: action.user,
         reviews: action.user.reviews,
         views: action.user.views,
       };
-    case "UPDATE_USER_SUCCESS":
+    case types.UPDATE_USER_SUCCESS:
       return {
         ...state,
         data: action.user,
         reviews: action.user.reviews,
         views: action.user.views,
+      };
+    case types.UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        errors: action.errors || []
       };
     default:
       return state;
