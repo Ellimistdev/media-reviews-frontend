@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { updateUser } from '../redux/actions/UserActions';
 import ErrorMessage from './ErrorMessage';
+import * as types from '../constants/ActionTypes'
 
 class EditUserComponent extends React.Component {
   constructor(props) {
@@ -10,8 +11,7 @@ class EditUserComponent extends React.Component {
     this.state = {
       email: this.props.user.email,
       id: this.props.user.id,
-      password: '',
-      errors: [],
+      password: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,11 +29,10 @@ class EditUserComponent extends React.Component {
     event.preventDefault();
     this.props.updateUser(this.state)
     .then(response => {
-      if (response.hasOwnProperty('errors')) {
-        throw response.errors;
-      } else {
+      if (response.type === types.UPDATE_USER_SUCCESS) {
         this.props.history.push(`/users/${response.user.id}`)
-        console.log('update returned true.')
+      } else {
+        throw new Error('An Error occured while attempting to update the user record');
       }
     })
     .catch(errors => {
@@ -46,7 +45,7 @@ class EditUserComponent extends React.Component {
   }
 
   render() {
-    return (      
+    const updateForm = (
       <form onSubmit={this.handleSubmit}>
         <ErrorMessage errors={this.state.errors} />
         <label>
@@ -59,6 +58,16 @@ class EditUserComponent extends React.Component {
         </label>
         <input type='submit' value='Submit' />
       </form>
+      );
+
+    const denyNotice = (
+        <p> You do not have access to this page </p> 
+      );
+
+    return (   
+      <div>
+        {this.props.auth.authenticated && (this.props.auth.user.id === this.props.user.id) ? updateForm : denyNotice}
+      </div>      
     );
   }
 }
