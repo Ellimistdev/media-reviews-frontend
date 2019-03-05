@@ -2,10 +2,10 @@ import React from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { updateUser } from '../redux/actions/UserActions';
-import ErrorComponent from './ErrorComponent';
+import ErrorComponent from '../components/ErrorComponent';
 import * as types from '../constants/ActionTypes'
 
-class EditUserComponent extends React.Component {
+class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,4 +72,4 @@ class EditUserComponent extends React.Component {
   }
 }
 
-export default EditUserComponent = withRouter(connect(null, { updateUser })(EditUserComponent));
+export default EditUserForm = withRouter(connect(null, { updateUser })(EditUserForm));

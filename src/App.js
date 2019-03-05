@@ -5,7 +5,7 @@ import NavComponent from './components/NavComponent';
 import MoviesContainer from './containers/MoviesContainer'
 import MovieContainer from './containers/MovieContainer';
 import UserContainer from './containers/UserContainer';
-import EditUserComponent from './components/EditUserComponent';
+import EditUserForm from './forms/EditUserForm';
 import LoginForm from './forms/LoginForm';
 import RegistrationForm from './forms/RegistrationForm';
 
@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path='/movies' component={MoviesContainer} /> 
           <Route path='/movies/:id' component={MovieContainer} /> 
           <Route exact path='/users/:id' component={UserContainer} /> 
-          <Route path='/users/:id/edit' render={() => <EditUserComponent auth={this.props.auth} user={this.props.user} />} /> 
+          <Route path='/users/:id/edit' render={() => <EditUserForm auth={this.props.auth} user={this.props.user} />} /> 
           <Route path='/login' component={LoginForm} />        
           <Route path='/signup' component={RegistrationForm} />               
         </div>
