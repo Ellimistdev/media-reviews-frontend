@@ -21,7 +21,7 @@
 ## Views
 [ ] POST new views
 [ ] Delete existing owned views
-[ ] Render edit/delete on owned views on user show
+[ ] Render delete on owned views on user show
 
 ## Movies
 [ ] POST new movies
