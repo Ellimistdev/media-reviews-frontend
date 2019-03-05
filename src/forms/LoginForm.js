@@ -1,10 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { signup } from '../redux/actions/AuthActions';
-import ErrorComponent from './ErrorComponent';
+import { authenticate } from '../redux/actions/AuthActions';
+import ErrorComponent from '../components/ErrorComponent';
 
-class RegistrationForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,17 +26,17 @@ class RegistrationForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.signup(this.state)
+    this.props.authenticate(this.state)
     .then(response => {
       if (response.hasOwnProperty('errors')) {
         throw response.errors;
       } else {
         this.props.history.push(`/users/${response.id}`)
-        console.log('signup returned true.')
+        console.log('login returned true.')
       }
     })
     .catch(errors => {
-      console.log('signup returned false.')
+      console.log('login returned false.')
       this.setState({       
         errors: [errors.message]
       });
@@ -45,7 +45,7 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    return (
+    return (      
       <form onSubmit={this.handleSubmit}>
         <ErrorComponent errors={this.state.errors} />
         <label>
@@ -62,4 +62,4 @@ class RegistrationForm extends React.Component {
   }
 }
 
-export default RegistrationForm = withRouter(connect(null, { signup })(RegistrationForm));
+export default LoginForm = withRouter(connect(null, { authenticate })(LoginForm));

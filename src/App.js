@@ -5,9 +5,9 @@ import NavComponent from './components/NavComponent';
 import MoviesContainer from './containers/MoviesContainer'
 import MovieContainer from './containers/MovieContainer';
 import UserContainer from './containers/UserContainer';
-import LoginForm from './components/LoginForm';
-import RegistrationForm from './components/RegistrationForm';
 import EditUserComponent from './components/EditUserComponent';
+import LoginForm from './forms/LoginForm';
+import RegistrationForm from './forms/RegistrationForm';
 
 class App extends Component {
   render() {
