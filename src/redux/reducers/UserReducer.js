@@ -4,7 +4,7 @@ const initialState = {
   data: {},
   reviews: [],
   views: [],
-  errors: []
+  errors: [],
 }
 
 export default (state = initialState, action) => {

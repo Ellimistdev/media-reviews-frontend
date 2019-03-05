@@ -5,7 +5,7 @@ const initialState = {
   authenticating: false,
   user: {},
   token: null,
-  errors: []
+  errors: [],
 }
 
 export default (state = initialState, action) => {
