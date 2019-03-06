@@ -13,20 +13,26 @@ class ReviewComponent extends Component {
       reviewer_email = review.reviewer.email;      
     }
 
+    const ownerAction = (
+      <Link to={`/reviews/${review.id}/edit`}>Edit</Link>
+    );
+
     const userReview = (
-        <React.Fragment>
-          <p>Movie: <Link to={`/movies/${review.movie_id}`}>{review.movie_title}</Link></p>
-          <p>Review: {review.content}</p>
-          <p>Rating: {review.rating}</p> 
-        </React.Fragment>
+      <React.Fragment>
+        <p>Movie: <Link to={`/movies/${review.movie_id}`}>{review.movie_title}</Link></p>
+        <p>Review: {review.content}</p>
+        <p>Rating: {review.rating}</p>         
+        { auth.authenticated && (auth.user.id === user.data.id) ? ownerAction : '' }
+      </React.Fragment>
       );
 
     const movieReview = (
-        <React.Fragment>
-          <p>Review: {review.content}</p> 
-          <p>Rating: {review.rating}</p> 
-          <p>Reviewer: <Link to={`/users/${reviewer_id}`}>{reviewer_email}</Link></p> 
-        </React.Fragment>
+      <React.Fragment>
+        <p>Review: {review.content}</p> 
+        <p>Rating: {review.rating}</p> 
+        <p>Reviewer: <Link to={`/users/${reviewer_id}`}>{reviewer_email}</Link></p>
+        { auth.authenticated && (auth.user.id === reviewer_id) ? ownerAction : '' }
+      </React.Fragment>
       );
     
     return (    
