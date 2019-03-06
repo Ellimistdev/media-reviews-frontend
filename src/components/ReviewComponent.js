@@ -24,7 +24,7 @@ class ReviewComponent extends Component {
         <p>Rating: {review.rating}</p>         
         { auth.authenticated && (auth.user.id === user.data.id) ? ownerAction : '' }
       </React.Fragment>
-      );
+    );
 
     const movieReview = (
       <React.Fragment>
@@ -33,7 +33,7 @@ class ReviewComponent extends Component {
         <p>Reviewer: <Link to={`/users/${reviewer_id}`}>{reviewer_email}</Link></p>
         { auth.authenticated && (auth.user.id === reviewer_id) ? ownerAction : '' }
       </React.Fragment>
-      );
+    );
     
     return (    
       <li className='review'>
