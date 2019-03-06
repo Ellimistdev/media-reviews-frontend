@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { updateUser } from '../redux/actions/UserActions';
 import ErrorComponent from '../components/ErrorComponent';
-import * as types from '../constants/ActionTypes'
+import * as types from '../constants/ActionTypes';
 
 class EditUserForm extends React.Component {
   constructor(props) {

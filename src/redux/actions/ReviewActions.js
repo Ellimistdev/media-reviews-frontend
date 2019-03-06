@@ -9,6 +9,7 @@ const updateFailure = errors => {
 }
 
 const updateSuccess = review => {
+  
   return {
     type: types.UPDATE_REVIEW_SUCCESS,
     review: review,
@@ -39,7 +40,6 @@ export const createReview = review => {
     body: JSON.stringify({review: review})
   });
 
-  // why dispatch here?
   return dispatch => {
     return fetch(request)
       .then(response => {
@@ -71,7 +71,6 @@ export const updateReview = review => {
     body: JSON.stringify({review: review})
   });
 
-  // why dispatch here?
   return dispatch => {
     return fetch(request)
       .then(response => {

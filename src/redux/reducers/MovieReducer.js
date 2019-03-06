@@ -1,18 +1,18 @@
+import * as types from '../../constants/ActionTypes';
 const initialState = {
   movies: [],
   movie: {},
-  reviews: [],
   errors: []
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_MOVIES_SUCCESS":
+    case types.FETCH_MOVIES_SUCCESS:
       return {
         ...state,
         movies: action.movies,
       };
-    case "FETCH_MOVIE_SUCCESS":
+    case types.FETCH_MOVIE_SUCCESS:
       return {
         ...state,
         movie: action.movie,
