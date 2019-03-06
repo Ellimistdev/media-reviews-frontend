@@ -9,9 +9,9 @@
 [x] redirect from users/:id/edit if not owner
 
 ## Reviews
-[ ] Create new review form
-[ ] Render new review form on movie page
-[ ] POST new reviews
+[x] Create new review form
+[x] Render new review form on movie page
+[x] POST new reviews
 [ ] Create edit review form
 [ ] PATCH existing reviews
 [ ] DELETE existing reviews
@@ -27,6 +27,7 @@
 [ ] POST new movies
 
 ## Stretch
+[ ] Set jwt in cookie, check on page load
 [ ] GET TMDB data
 [ ] Render Poster on movie show
 
