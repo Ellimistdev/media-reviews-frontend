@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ReviewComponent from '../components/ReviewComponent';
 
 class ReviewsContainer extends Component {
   render() {
+    const { reviews, type, auth, user } = this.props;
     return (
       <React.Fragment>
         <h2>Reviews!</h2>
         <ul className='review-list'>
         {
-          this.props.reviews.map(review => {
+          reviews.map(review => {
             return (
-                <ReviewComponent key={review.id} review={review} type={this.props.type}/>
+                <ReviewComponent key={review.id} user={user} review={review} auth={auth} type={type}/>
             )
           })
         }        
@@ -20,4 +22,11 @@ class ReviewsContainer extends Component {
   }  
 }
 
-export default ReviewsContainer;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    user: state.user,
+  }
+}
+
+export default connect(mapStateToProps)(ReviewsContainer);

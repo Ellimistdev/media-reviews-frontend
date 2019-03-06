@@ -13,14 +13,15 @@ class MovieContainer extends Component {
   }
 
   render() {
+    const { movie, auth } = this.props;
     if (Object.entries(this.props.movie).length === 0) {
       return <h1>Loading...</h1>
     }    
     return (
       <div className='movie-container'>
-        <MovieComponent movie={this.props.movie} />
-        <ReviewsContainer reviews={this.props.movie.reviews} type={'movie'}/>
-        { this.props.auth.authenticated ? <ReviewForm movie={this.props.movie} user={this.props.auth.user}/> : <p>Log in to add a review!</p> }
+        <MovieComponent movie={movie} />
+        <ReviewsContainer reviews={movie.reviews} type={'movie'}/>
+        { auth.authenticated ? <ReviewForm movie={movie} user={auth.user}/> : <p>Log in to add a review!</p> }
       </div>
     )
   }  
@@ -29,7 +30,7 @@ class MovieContainer extends Component {
 const mapStateToProps = state => {
   return {
     movie: state.media.movie,
-    reviews: state.media.reviews,
+    user: state.user,
     auth: state.auth,
   }
 }

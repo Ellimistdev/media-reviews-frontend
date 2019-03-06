@@ -6,21 +6,21 @@ import ReviewsContainer from './ReviewsContainer';
 import ViewsContainer from './ViewsContainer';
 import UserComponent from '../components/UserComponent';
 
-class UserContainer extends Component {
-  
+class UserContainer extends Component {  
   componentDidMount() {
     this.props.fetchUser(this.props.match.params['id']);
   }
-
+  
   render() {
+    const { reviews, views, auth, user } = this.props;
     if (Object.entries(this.props.user).length === 0) {
       return <h1>Loading...</h1>
     }
     return (
       <div className='user-container'>
-        <UserComponent user={this.props.user} auth={this.props.auth} />
-        <ReviewsContainer reviews={this.props.reviews} type={'user'}/>
-        <ViewsContainer views={this.props.views} />
+        <UserComponent user={user} auth={auth} />
+        <ReviewsContainer reviews={reviews} type={'user'}/>
+        <ViewsContainer views={views} />
       </div>
     )
   }  

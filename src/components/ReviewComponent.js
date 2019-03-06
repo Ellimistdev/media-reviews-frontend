@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class ReviewComponent extends Component { 
   render() {
-    const { review, type } = this.props;
+    const { review, type, auth, user } = this.props;
     const reviewType = type === 'user'
     let reviewer_id = '';
     let reviewer_email = '';
