@@ -16,7 +16,7 @@ class UserContainer extends Component {
   
   render() {
     const { reviews, views, auth, user } = this.props;
-    if (Object.entries(this.props.user).length === 0) {
+    if (this.props.user.id === null) {
       return <h1>Loading...</h1>
     }
     return (
@@ -31,7 +31,7 @@ class UserContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.data,
+    user: state.user,
     reviews: state.reviews.collection,
     views: state.user.views,
     auth: state.auth,
