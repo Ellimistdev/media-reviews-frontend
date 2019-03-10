@@ -28,11 +28,6 @@ class ReviewComponent extends Component {
       .then(response => {
         console.log(response);
       })
-      .then(() =>{
-        // redirect back?
-        // do nothing? page may rerender on state update.
-        // this.props.history.push(`/reviews/${id}/edit`);
-      })
   }
 
   render() {
@@ -58,7 +53,7 @@ class ReviewComponent extends Component {
         <p>Review: {review.content}</p>
         <p>Rating: {review.rating}</p>
         <p>Last update: {review.updated_at}</p>
-        { auth.authenticated && (auth.user.id === user.data.id) ? ownerAction : '' }
+        { auth.authenticated && (auth.user.id === user.id) ? ownerAction : '' }
       </React.Fragment>
     );
 
