@@ -12,8 +12,8 @@
 [x] Create new review form
 [x] Render new review form on movie page
 [x] POST new reviews
-[ ] Create edit review form
-[ ] PATCH existing reviews
+[x] Create edit review form
+[x] PATCH existing reviews
 [ ] DELETE existing reviews
 [x] Render edit on owned reviews on movie show
 [x] Render edit on owned reviews on user show
@@ -27,8 +27,10 @@
 ## Movies
 [ ] POST new movies
 
-## Stretch
+## Auth
 [ ] Set jwt in cookie, check on page load
+
+## Stretch
 [ ] GET TMDB data
 [ ] Render Poster on movie show
 

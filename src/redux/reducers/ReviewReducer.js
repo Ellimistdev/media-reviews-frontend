@@ -17,6 +17,11 @@ export default (state = {}, action) => {
         ...state,
         review: action.review,
       }
+    case types.DELETE_REVIEW_SUCCESS:
+      return {
+       ...state,
+      //  reviews:
+      }
     case types.UPDATE_REVIEW_FAILURE:
     default:
       return state;
