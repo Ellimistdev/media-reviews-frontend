@@ -47,8 +47,8 @@ class ReviewComponent extends Component {
 
     const ownerAction = (      
       <React.Fragment>
-        <Link to={`${review.id}`} onClick={this.handleEdit}>Edit</Link>
-        <Link to={`${review.id}`} onClick={this.handleDelete}>Delete Review</Link>
+        <p><Link to={`${review.id}`} onClick={this.handleEdit}>Edit</Link></p>
+        <p><Link to={`${review.id}`} onClick={this.handleDelete}>Delete Review</Link></p>
       </React.Fragment>
     );
 
@@ -80,4 +80,4 @@ class ReviewComponent extends Component {
   } 
 }
 
-export default withRouter(connect(null, { fetchReview })(ReviewComponent));
+export default withRouter(connect(null, { fetchReview, deleteReview })(ReviewComponent));

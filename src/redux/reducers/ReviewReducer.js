@@ -20,7 +20,7 @@ export default (state = {}, action) => {
     case types.DELETE_REVIEW_SUCCESS:
       return {
        ...state,
-      //  reviews:
+       reviews: state.reviews.filter(review => action.payload !== review)
       }
     case types.UPDATE_REVIEW_FAILURE:
     default:

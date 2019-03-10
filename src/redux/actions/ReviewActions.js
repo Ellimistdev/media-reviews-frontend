@@ -30,6 +30,19 @@ const createSuccess = review => {
   }
 }
 
+const deleteFailure = errors => {
+  return {
+    type: types.DELETE_REVIEW_FAILURE,
+    errors: errors,
+  }
+}
+
+const deleteSuccess = () => {
+  return {
+    type: types.DELETE_REVIEW_SUCCESS,
+  }
+}
+
 export const fetchReview = id => dispatch => {
   return fetch(`${REVIEWS}/${id}`)
     .then(response => response.json())
@@ -48,10 +61,19 @@ export const deleteReview = id => dispatch => {
   });
 
   return fetch(request)
-    .then(response => response.json())
-    .then(() =>
-      dispatch({ type: types.DELETE_REVIEW_SUCCESS })
-    )
+    .then(response => {
+      if (response.status === 204) {    
+        dispatch(deleteSuccess());
+        return response;
+      } else {
+        throw new Error('Failed to delete review');
+      }      
+    })
+    .catch(errors => {
+      console.log(errors);
+      dispatch(deleteFailure(errors));
+      return { errors: errors };
+    })
 }
 
 export const createReview = review => {
@@ -61,7 +83,7 @@ export const createReview = review => {
       'Authorization': `Bearer ${localStorage.token}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({review: review})
+    body: JSON.stringify({review: review}),
   });
 
   return dispatch => {
@@ -78,8 +100,8 @@ export const createReview = review => {
         }      
       })
       .catch(errors => {
-        console.log(errors)
-        dispatch(createFailure(errors))
+        console.log(errors);
+        dispatch(createFailure(errors));
         return { errors: errors };
       })
   };
