@@ -9,8 +9,8 @@ class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: this.props.user.email,
-      id: this.props.user.id,
+      email: this.props.user.data.email,
+      id: this.props.user.data.id,
       password: ''
     };
 
@@ -66,10 +66,17 @@ class EditUserForm extends React.Component {
 
     return (   
       <div>
-        {this.props.auth.authenticated && (this.props.auth.user.id === this.props.user.id) ? updateForm : denyNotice}
+        {this.props.auth.authenticated && (this.props.auth.user.id === this.props.user.data.id) ? updateForm : denyNotice}
       </div>      
     );
   }
 }
 
-export default EditUserForm = withRouter(connect(null, { updateUser })(EditUserForm));
+const mapStateToProps = state => {
+  return {    
+    user: state.user,
+    auth: state.auth,
+  }
+}
+
+export default EditUserForm = withRouter(connect(mapStateToProps, { updateUser })(EditUserForm));
