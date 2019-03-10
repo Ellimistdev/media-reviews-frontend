@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, } from 'react-router-dom';
 import NavComponent from './components/NavComponent';
 import MoviesContainer from './containers/MoviesContainer'
 import MovieContainer from './containers/MovieContainer';
@@ -11,6 +11,12 @@ import RegistrationForm from './forms/RegistrationForm';
 
 class App extends Component {
   render() {
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        this.props.auth.authenticated ? <Component {...props} /> : <Redirect to='/login' />
+      )} />
+    )
+
     return (
       <Router>
         <div className='App'>
@@ -18,7 +24,8 @@ class App extends Component {
           <Route exact path='/movies' component={MoviesContainer} /> 
           <Route path='/movies/:id' component={MovieContainer} /> 
           <Route exact path='/users/:id' component={UserContainer} /> 
-          <Route path='/users/:id/edit' render={() => <EditUserForm auth={this.props.auth} user={this.props.user} />} /> 
+          <PrivateRoute path='/users/:id/edit' component={EditUserForm} />
+          <PrivateRoute path='/reviews/:id/edit' component={EditReviewForm} />
           <Route path='/login' component={LoginForm} />        
           <Route path='/signup' component={RegistrationForm} />               
         </div>
@@ -30,7 +37,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    user: state.auth.user
+    user: state.auth.user,
+    review: state.review,
   }
 }
 
