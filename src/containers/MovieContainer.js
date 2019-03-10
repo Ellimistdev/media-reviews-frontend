@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { fetchMovie } from '../redux/actions/MovieActions';
+import { fetchReviews } from '../redux/actions/ReviewActions';
 import ReviewForm from '../forms/ReviewForm';
 import ReviewsContainer from './ReviewsContainer';
 import MovieComponent from '../components/MovieComponent';
@@ -38,4 +39,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchMovie })(MovieContainer));
+export default withRouter(connect(mapStateToProps, { fetchMovie, fetchReviews })(MovieContainer));

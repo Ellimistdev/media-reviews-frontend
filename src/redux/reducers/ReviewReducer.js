@@ -12,11 +12,21 @@ export default (state = initialState, action) => {
         ...state,
         current: action.current,
       }
+    case types.FETCH_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        collection: action.collection,
       }
-    case types.CREATE_REVIEW_FAILURE:
+      case types.CREATE_REVIEW_FAILURE:
       return {
         ...state,
         errors: action.errors,
+      }
+      case types.CREATE_REVIEW_SUCCESS:
+      return {
+        ...state,
+        current: action.current,
+        collection: [...state.collection, action.current],        
       }
     case types.UPDATE_REVIEW_SUCCESS:
       return {

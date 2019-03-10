@@ -1,5 +1,5 @@
 import * as types from '../../constants/ActionTypes'
-import { REVIEWS } from '../../constants/Routes'
+import { REVIEWS, USERS, MOVIES } from '../../constants/Routes'
 
 const updateFailure = errors => {
   return {
@@ -48,6 +48,15 @@ export const fetchReview = id => dispatch => {
     .then(response => response.json())
     .then(review =>
       dispatch({ type: types.FETCH_REVIEW_SUCCESS, current: review })
+    )
+}
+
+export const fetchReviews = (id, type) => dispatch => {
+  let path = type === 'user' ? `${USERS}/${id}/reviews` : `${MOVIES}/${id}/reviews`;
+  return fetch(path)
+    .then(response => response.json())
+    .then(reviews =>
+      dispatch({ type: types.FETCH_REVIEWS_SUCCESS, collection: reviews })
     )
 }
 
