@@ -29,7 +29,7 @@ class MovieContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    movie: state.media.movie,
+    movie: state.movies.current,
     user: state.user,
     auth: state.auth,
   }
