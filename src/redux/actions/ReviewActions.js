@@ -1,5 +1,5 @@
 import * as types from '../../constants/ActionTypes'
-import { REVIEWS } from '../../constants/Routes'
+import { REVIEWS, USERS, MOVIES } from '../../constants/Routes'
 
 const updateFailure = errors => {
   return {
@@ -12,7 +12,7 @@ const updateSuccess = review => {
   
   return {
     type: types.UPDATE_REVIEW_SUCCESS,
-    review: review,
+    current: review,
   }
 }
 
@@ -26,7 +26,7 @@ const createFailure = errors => {
 const createSuccess = review => {
   return {
     type: types.CREATE_REVIEW_SUCCESS,
-    review: review,
+    current: review,
   }
 }
 
@@ -37,9 +37,10 @@ const deleteFailure = errors => {
   }
 }
 
-const deleteSuccess = () => {
+const deleteSuccess = id => {
   return {
     type: types.DELETE_REVIEW_SUCCESS,
+    id: id,
   }
 }
 
@@ -47,7 +48,16 @@ export const fetchReview = id => dispatch => {
   return fetch(`${REVIEWS}/${id}`)
     .then(response => response.json())
     .then(review =>
-      dispatch({ type: types.FETCH_REVIEW_SUCCESS, review: review })
+      dispatch({ type: types.FETCH_REVIEW_SUCCESS, current: review })
+    )
+}
+
+export const fetchReviews = (id, type) => dispatch => {
+  let path = type === 'user' ? `${USERS}/${id}/reviews` : `${MOVIES}/${id}/reviews`;
+  return fetch(path)
+    .then(response => response.json())
+    .then(reviews =>
+      dispatch({ type: types.FETCH_REVIEWS_SUCCESS, collection: reviews })
     )
 }
 
@@ -63,7 +73,7 @@ export const deleteReview = id => dispatch => {
   return fetch(request)
     .then(response => {
       if (response.status === 204) {    
-        dispatch(deleteSuccess());
+        dispatch(deleteSuccess(parseInt(id)));
         return response;
       } else {
         throw new Error('Failed to delete review');

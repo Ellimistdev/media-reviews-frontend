@@ -1,8 +1,8 @@
 import * as types from '../../constants/ActionTypes';
 
 const initialState = {
-  data: {},
-  reviews: [],
+  id: null,
+  email: '',
   views: [],
   errors: [],
 }
@@ -12,15 +12,15 @@ export default (state = initialState, action) => {
     case types.FETCH_USER_SUCCESS:
       return {
         ...state,
-        data: action.user,
-        reviews: action.user.reviews,
+        id: action.user.id,
+        email: action.user.email,
         views: action.user.views,
       };
     case types.UPDATE_USER_SUCCESS:
       return {
         ...state,
-        data: action.user,
-        reviews: action.user.reviews,
+        id: action.user.id,
+        email: action.user.email,
         views: action.user.views,
       };
     case types.UPDATE_USER_FAILURE:

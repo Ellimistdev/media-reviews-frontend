@@ -28,7 +28,7 @@ class MoviesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.media.movies
+    movies: state.movies.collection
   }
 }
 

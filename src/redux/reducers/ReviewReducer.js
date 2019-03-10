@@ -1,26 +1,42 @@
 import * as types from '../../constants/ActionTypes';
+const initialState = {
+  collection: [],
+  current: {},
+  errors: []
+}
 
-export default (state = {}, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {    
     case types.FETCH_REVIEW_SUCCESS:
       return {
         ...state,
-        review: action.review,
+        current: action.current,
       }
-    case types.CREATE_REVIEW_FAILURE:
+    case types.FETCH_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        collection: action.collection,
+      }
+      case types.CREATE_REVIEW_FAILURE:
       return {
         ...state,
         errors: action.errors,
       }
+      case types.CREATE_REVIEW_SUCCESS:
+      return {
+        ...state,
+        current: action.current,
+        collection: [...state.collection, action.current],        
+      }
     case types.UPDATE_REVIEW_SUCCESS:
       return {
         ...state,
-        review: action.review,
+        current: action.current,
       }
     case types.DELETE_REVIEW_SUCCESS:
       return {
        ...state,
-       reviews: state.reviews.filter(review => action.payload !== review)
+       collection: state.collection.filter(review => action.id !== review.id)
       }
     case types.UPDATE_REVIEW_FAILURE:
     default:

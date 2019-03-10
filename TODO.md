@@ -14,10 +14,9 @@
 [x] POST new reviews
 [x] Create edit review form
 [x] PATCH existing reviews
-[ ] DELETE existing reviews
+[x] DELETE existing reviews
 [x] Render edit on owned reviews on movie show
 [x] Render edit on owned reviews on user show
-[ ] Render delete on owned review edit page
 
 ## Views
 [ ] POST new views
