@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { fetchReview } from '../redux/actions/ReviewActions';
 
 class ReviewComponent extends Component { 
+  loadEdit = event => {
+    let id = event.target.href.substr(event.target.href.lastIndexOf('/')+1);
+    event.preventDefault();
+    this.props.fetchReview(id)
+      .then(response => {
+        console.log(response);
+      })
+      .then(() =>{
+        this.props.history.push(`/reviews/${id}/edit`);
+      })
+  }
+
   render() {
     const { review, type, auth, user } = this.props;
     const reviewType = type === 'user'
@@ -14,7 +28,7 @@ class ReviewComponent extends Component {
     }
 
     const ownerAction = (
-      <Link to={`/reviews/${review.id}/edit`}>Edit</Link>
+      <Link to={`${review.id}`} onClick={this.loadEdit}>Edit</Link>
     );
 
     const userReview = (
@@ -43,4 +57,4 @@ class ReviewComponent extends Component {
   } 
 }
 
-export default ReviewComponent;
+export default withRouter(connect(null, { fetchReview })(ReviewComponent));

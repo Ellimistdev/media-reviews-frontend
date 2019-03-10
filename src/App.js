@@ -5,6 +5,7 @@ import NavComponent from './components/NavComponent';
 import MoviesContainer from './containers/MoviesContainer'
 import MovieContainer from './containers/MovieContainer';
 import UserContainer from './containers/UserContainer';
+import EditReviewForm from './forms/EditReviewForm';
 import EditUserForm from './forms/EditUserForm';
 import LoginForm from './forms/LoginForm';
 import RegistrationForm from './forms/RegistrationForm';
