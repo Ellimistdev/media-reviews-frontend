@@ -12,7 +12,7 @@ const updateSuccess = review => {
   
   return {
     type: types.UPDATE_REVIEW_SUCCESS,
-    review: review,
+    current: review,
   }
 }
 
@@ -26,7 +26,7 @@ const createFailure = errors => {
 const createSuccess = review => {
   return {
     type: types.CREATE_REVIEW_SUCCESS,
-    review: review,
+    current: review,
   }
 }
 
@@ -47,7 +47,7 @@ export const fetchReview = id => dispatch => {
   return fetch(`${REVIEWS}/${id}`)
     .then(response => response.json())
     .then(review =>
-      dispatch({ type: types.FETCH_REVIEW_SUCCESS, review: review })
+      dispatch({ type: types.FETCH_REVIEW_SUCCESS, current: review })
     )
 }
 

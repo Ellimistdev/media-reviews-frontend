@@ -9,11 +9,9 @@ class EditReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: this.props.review.review.content || '',
-      rating: this.props.review.review.rating || 5,
-      id: this.props.review.review.id || null,
-      movie: this.props.review.review.movie || null,
-      reviewer: this.props.review.review.reviewer || null,
+      content: this.props.review.content,
+      rating: this.props.review.rating,
+      id: this.props.review.id,
     }; 
       
     this.handleChange = this.handleChange.bind(this);
@@ -32,7 +30,7 @@ class EditReviewForm extends React.Component {
     this.props.updateReview(this.state)
     .then(response => {
       if (response.type === types.UPDATE_REVIEW_SUCCESS) {
-        this.props.history.push(`/users/${response.review.reviewer.id}`)
+        this.props.history.push(`/users/${response.current.reviewer.id}`)
         console.log('review updated!')
       } else {
         throw new Error('An Error occured while attempting to update the review');
@@ -46,10 +44,6 @@ class EditReviewForm extends React.Component {
       console.log(this.state.errors)
     })
   }
-
-  // componentDidMount(){
-    
-  // }
 
   render() {
     const updateForm = (
@@ -79,19 +73,19 @@ class EditReviewForm extends React.Component {
 
     return (
       <div>
-        <h2>Edit review for {this.state.movie.title}</h2>
-        { (this.props.auth.user.id === this.props.review.review.reviewer.id) ? updateForm : denyNotice}
+        <h2>Edit review for {this.props.review.movie.title}</h2>
+        { (this.props.auth.user.id === this.props.review.reviewer.id) ? updateForm : denyNotice}
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
-    review: state.review,
+    review: state.reviews.current,
     user: state.user,
     auth: state.auth,
   }
 }
-
 
 export default withRouter(connect(mapStateToProps, { fetchReview, updateReview })(EditReviewForm));

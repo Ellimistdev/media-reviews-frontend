@@ -29,7 +29,7 @@ class UserContainer extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user.data,
-    reviews: state.user.reviews,
+    reviews: state.reviews.collection,
     views: state.user.views,
     auth: state.auth,
   }

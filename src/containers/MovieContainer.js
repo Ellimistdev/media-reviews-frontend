@@ -9,18 +9,20 @@ import MovieComponent from '../components/MovieComponent';
 class MovieContainer extends Component {
   
   componentDidMount() {
-    this.props.fetchMovie(this.props.match.params['id']);
+    let id = this.props.match.params['id'];
+    this.props.fetchReviews(id, 'movie');
+    this.props.fetchMovie(id);
   }
 
   render() {
-    const { movie, auth } = this.props;
+    const { movie, auth, reviews } = this.props;
     if (Object.entries(this.props.movie).length === 0) {
       return <h1>Loading...</h1>
     }    
     return (
       <div className='movie-container'>
         <MovieComponent movie={movie} />
-        <ReviewsContainer reviews={movie.reviews} type={'movie'}/>
+        <ReviewsContainer reviews={reviews} type={'movie'}/>
         { auth.authenticated ? <ReviewForm movie={movie} user={auth.user}/> : <p>Log in to add a review!</p> }
       </div>
     )
@@ -32,6 +34,7 @@ const mapStateToProps = state => {
     movie: state.movies.current,
     user: state.user,
     auth: state.auth,
+    reviews: state.reviews.collection,
   }
 }
 

@@ -31,7 +31,7 @@ class ReviewForm extends React.Component {
     this.props.createReview(this.state)
     .then(response => {
       if (response.type === types.CREATE_REVIEW_SUCCESS) {        
-        this.props.history.push(`/movies/${response.review.movie.id}`)
+        this.props.history.push(`/movies/${response.current.movie.id}`)
         console.log('review created!')
       } else {
         throw new Error('An Error occured while attempting to create the review');
