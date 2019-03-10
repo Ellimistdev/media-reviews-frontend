@@ -29,6 +29,13 @@ const createSuccess = review => {
     review: review,
   }
 }
+export const fetchReview = id => dispatch => {
+  return fetch(`${REVIEWS}/${id}`)
+    .then(response => response.json())
+    .then(review =>
+      dispatch({ type: types.FETCH_REVIEW_SUCCESS, review: review })
+    )
+}
 
 export const createReview = review => {
   const request = new Request(`${REVIEWS}`, {

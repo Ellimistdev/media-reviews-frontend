@@ -2,6 +2,11 @@ import * as types from '../../constants/ActionTypes';
 
 export default (state = {}, action) => {
   switch (action.type) {    
+    case types.FETCH_REVIEW_SUCCESS:
+      return {
+        ...state,
+        review: action.review,
+      }
     case types.CREATE_REVIEW_FAILURE:
       return {
         ...state,
@@ -11,7 +16,6 @@ export default (state = {}, action) => {
       return {
         ...state,
         review: action.review,
-        reviews: [...state.reviews, action.review],
       }
     case types.UPDATE_REVIEW_FAILURE:
     default:
