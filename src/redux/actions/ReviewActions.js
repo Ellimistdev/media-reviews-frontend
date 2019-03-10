@@ -37,9 +37,10 @@ const deleteFailure = errors => {
   }
 }
 
-const deleteSuccess = () => {
+const deleteSuccess = id => {
   return {
     type: types.DELETE_REVIEW_SUCCESS,
+    id: id,
   }
 }
 
@@ -72,7 +73,7 @@ export const deleteReview = id => dispatch => {
   return fetch(request)
     .then(response => {
       if (response.status === 204) {    
-        dispatch(deleteSuccess());
+        dispatch(deleteSuccess(parseInt(id)));
         return response;
       } else {
         throw new Error('Failed to delete review');
