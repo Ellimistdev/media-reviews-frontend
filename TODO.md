@@ -24,7 +24,7 @@
 [ ] Render delete on owned views on user show
 
 ## Movies
-[ ] POST new movies
+[x] POST new movies
 
 ## Auth
 [x] Persist authentication through page loads

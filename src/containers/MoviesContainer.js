@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
 import { fetchMovies } from '../redux/actions/MovieActions';
+import CreateMovieForm from '../forms/CreateMovieForm';
 
 class MoviesContainer extends Component {
   
@@ -15,6 +16,8 @@ class MoviesContainer extends Component {
     }
     return (
       <ul>
+        <h2>Add a movie</h2>
+        <CreateMovieForm />
         {this.props.movies.map(movie => (
           <li key={movie.id}>
             <h4>Title:<Link to={`/movies/${movie.id}`}>{movie.title}</Link></h4>
@@ -28,7 +31,7 @@ class MoviesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.movies.collection
+    movies: state.movies.collection,
   }
 }
 

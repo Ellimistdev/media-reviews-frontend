@@ -19,8 +19,8 @@ export default (state = initialState, action) => {
       };
     case types.CREATE_MOVIE_SUCCESS:
       return {
-        ...state,
-        collection: action.collection,
+        ...state,        
+        collection: [...state.collection, action.current],
       };
     case types.FETCH_MOVIE_SUCCESS:
       return {
