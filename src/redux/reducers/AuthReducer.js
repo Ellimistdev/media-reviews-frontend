@@ -1,10 +1,10 @@
 import * as types from '../../constants/ActionTypes';
-
+const storedUser = JSON.parse(localStorage.getItem('user'));
 const initialState = {
-  authenticated: false,
+  authenticated: !!localStorage.token,
   authenticating: false,
-  user: {},
-  token: null,
+  user: storedUser || {},
+  token: localStorage.token || null,
   errors: [],
 }
 
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
     case types.AUTHENTICATION_REQUEST:
       return {
         ...state,
-        authenticating: true
+        authenticating: true,
       }
     case types.AUTHENTICATION_SUCCESS:
       return {
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
         authenticated: true,
         authenticating: false,
         user: action.user,
-        token: action.token
+        token: action.token,
       }
     case types.AUTHENTICATION_FAILURE:
       return {
@@ -29,10 +29,16 @@ export default (state = initialState, action) => {
         authenticating: false,
         user: {},
         token: null,
-        errors: action.errors || []
+        errors: action.errors || [],
       }
     case types.LOGOUT:
-      return initialState;
+      return {
+        ...state,
+        authenticated: false,
+        authenticating: false,
+        user: {},
+        token: null,
+      };
     default:
       return state;
   }

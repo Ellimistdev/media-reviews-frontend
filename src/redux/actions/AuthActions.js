@@ -72,13 +72,12 @@ export const authenticate = credentials => {
         if (response.status === 201) {
           return response.json()
           .then(json => {
-              const token = json.jwt;
-              console.log(token)
-              localStorage.setItem('token', token);
-              return getUser(credentials)
+            const token = json.jwt;
+            localStorage.setItem('token', token);
+            return getUser(credentials)
           })
           .then(user => {
-            console.log(user);
+            localStorage.setItem('user', JSON.stringify(user));
             dispatch(authSuccess(user, localStorage.token));
             return user;         
           })

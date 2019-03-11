@@ -27,7 +27,7 @@
 [ ] POST new movies
 
 ## Auth
-[ ] Set jwt in cookie, check on page load
+[x] Persist authentication through page loads
 
 ## Stretch
 [ ] GET TMDB data
