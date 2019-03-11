@@ -11,14 +11,21 @@ class MoviesContainer extends Component {
   }
 
   render() {
-    if (this.props.movies.length === 0) {
+    const { movies, auth } = this.props;
+    const addMovie = (      
+      <React.Fragment>        
+        <h2>Add a movie</h2> <CreateMovieForm /> 
+      </React.Fragment>
+    );
+
+    if (movies.length === 0) {
       return <h1>Loading...</h1>
     }
+    
     return (
       <ul>
-        <h2>Add a movie</h2>
-        <CreateMovieForm />
-        {this.props.movies.map(movie => (
+        { auth.authenticated ? addMovie : <p>Log in to add a movie!</p> }        
+        {movies.map(movie => (
           <li key={movie.id}>
             <h4>Title:<Link to={`/movies/${movie.id}`}>{movie.title}</Link></h4>
             <p>ID: {movie.id} | TMDB ID: {movie.tmdb_id}</p>
@@ -32,6 +39,7 @@ class MoviesContainer extends Component {
 const mapStateToProps = state => {
   return {
     movies: state.movies.collection,
+    auth: state.auth,
   }
 }
 
