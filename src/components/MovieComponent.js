@@ -2,9 +2,11 @@ import React from 'react';
 
 const MovieComponent = props => {  
   return (
-    <div className='movie'> 
-      <p>Title: {props.movie.title}</p>
-      <p>ID: {props.movie.id} | TMDB ID: {props.movie.tmdb_id}</p>
+    <div className='movie wrapper'> 
+      <img className='poster' src={props.movie.poster_url} alt='movie poster' />
+      <div className='data wrapper'>
+        <span className='title'>{props.movie.title}</span>
+      </div>
     </div>
   );
 }

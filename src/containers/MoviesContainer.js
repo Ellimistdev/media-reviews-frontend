@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
 import { fetchMovies } from '../redux/actions/MovieActions';
 import CreateMovieForm from '../forms/CreateMovieForm';
+import MovieComponent from '../components/MovieComponent';
 
 class MoviesContainer extends Component {
   
@@ -21,17 +22,20 @@ class MoviesContainer extends Component {
     if (movies.length === 0) {
       return <h1>Loading...</h1>
     }
-    
-    return (
-      <ul>
+
+    return (      
+      <React.Fragment>  
         { auth.authenticated ? addMovie : <p>Log in to add a movie!</p> }        
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <h4>Title:<Link to={`/movies/${movie.id}`}>{movie.title}</Link></h4>
-            <p>ID: {movie.id} | TMDB ID: {movie.tmdb_id}</p>
-          </li>
-          ))}
-      </ul>
+        <ul className='movie-list wrapper'>
+          {movies.map(movie => (
+            <li key={movie.id} className='movie-thumb'>
+              <Link to={`/movies/${movie.id}`}>
+                <MovieComponent movie={movie} />
+              </Link>
+            </li>
+            ))}
+        </ul>      
+      </React.Fragment>  
     )
   }
 }
