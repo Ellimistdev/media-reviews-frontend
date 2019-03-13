@@ -16,13 +16,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         collection: action.collection,
-      }
-      case types.CREATE_REVIEW_FAILURE:
-      return {
-        ...state,
-        errors: action.errors,
-      }
-      case types.CREATE_REVIEW_SUCCESS:
+      }    
+    case types.CREATE_REVIEW_SUCCESS:
       return {
         ...state,
         current: action.current,
@@ -35,10 +30,16 @@ export default (state = initialState, action) => {
       }
     case types.DELETE_REVIEW_SUCCESS:
       return {
-       ...state,
-       collection: state.collection.filter(review => action.id !== review.id)
-      }
+        ...state,
+        collection: state.collection.filter(review => action.id !== review.id)
+      }    
+    case types.DELETE_REVIEW_FAILURE:
     case types.UPDATE_REVIEW_FAILURE:
+    case types.CREATE_REVIEW_FAILURE:
+      return {
+        ...state,
+        errors: action.errors,
+      }
     default:
       return state;
   }
