@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/actions/AuthActions';

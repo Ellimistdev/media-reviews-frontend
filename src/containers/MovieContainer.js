@@ -23,7 +23,7 @@ class MovieContainer extends Component {
     return (
       <div className='movie-container'>
         <div className='movie-data wrapper'>
-          <MovieComponent movie={movie} />
+          <MovieComponent movie={movie} type={'show'} auth={auth} />
         </div>
         <ReviewsContainer reviews={reviews} type={'movie'}/>
         { auth.authenticated ? <ReviewForm movie={movie} user={auth.user}/> : <p>Log in to add a review!</p> }

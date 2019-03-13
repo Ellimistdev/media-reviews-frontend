@@ -20,7 +20,7 @@ class App extends Component {
 
     return (
       <Router>
-        <div className='App'>
+        <div id='App'>
           <NavComponent auth={this.props.auth} />
           <Route exact path='/movies' component={MoviesContainer} /> 
           <Route path='/movies/:id' component={MovieContainer} /> 

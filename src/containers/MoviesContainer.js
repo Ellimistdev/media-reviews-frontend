@@ -30,7 +30,7 @@ class MoviesContainer extends Component {
           {movies.map(movie => (
             <li key={movie.id} className='movie-thumb'>
               <Link to={`/movies/${movie.id}`}>
-                <MovieComponent movie={movie} />
+                <MovieComponent movie={movie} type={'index'}/>
               </Link>
             </li>
             ))}
