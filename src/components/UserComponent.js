@@ -6,7 +6,7 @@ const UserComponent = props => {
 
   return (
     <div className='user'> 
-      <p>Email: {user.email} {auth.authenticated && (auth.user.id === user.id) ? <Link to={`/users/${user.id}/edit`}>Edit</Link> : '' }</p>
+      <p>Email: {user.email} {auth.authenticated && (auth.user.id === user.id) && <Link to={`/users/${user.id}/edit`}>Edit</Link>}</p>
     </div>
   );
 }
