@@ -39,6 +39,28 @@ export default (state = initialState, action) => {
         user: {},
         token: null,
       };
+      case types.CREATE_VIEW_SUCCESS:
+        return {
+          ...state,
+          user: {
+            ...state.user, 
+            views: [ ...state.user.views, action.current],
+          },          
+        }
+      case types.DELETE_VIEW_SUCCESS_AUTH:
+        return {
+          ...state,
+          user: {
+            ...state.user, 
+            views: state.user.views.filter(view => action.id !== view.id),
+          },
+        }
+      case types.DELETE_VIEW_FAILURE:
+      case types.CREATE_VIEW_FAILURE:
+        return {
+          ...state,
+          errors: action.errors,
+        }
     default:
       return state;
   }

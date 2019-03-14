@@ -28,6 +28,11 @@ export default (state = initialState, action) => {
         ...state,
         errors: action.errors || []
       };
+    case types.DELETE_VIEW_SUCCESS_USER:
+      return {
+        ...state,        
+        views: state.views.filter(view => action.id !== view.id),        
+      }
     default:
       return state;
   }
