@@ -46,18 +46,21 @@ class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <ErrorComponent errors={this.state.errors} />
-        <label>
-          Email:
-          <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type='password' name='password' value={this.state.password} onChange={this.handleChange} />
-        </label>
-        <input type='submit' value='Submit' />
-      </form>
+      <React.Fragment>
+        <h2>Sign Up!</h2>
+        <form onSubmit={this.handleSubmit}>
+          <ErrorComponent errors={this.state.errors} />
+          <label>
+            Email:
+            <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
+          </label>
+          <label>
+            Password:
+            <input type='password' name='password' value={this.state.password} onChange={this.handleChange} />
+          </label>
+          <input type='submit' value='Submit' />
+        </form>
+      </React.Fragment>
     );
   }
 }
