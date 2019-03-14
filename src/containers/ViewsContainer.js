@@ -10,7 +10,7 @@ class ViewsContainer extends Component {
         {
           this.props.views.map(view => {
             return (
-                <ViewComponent key={view.id} view={view} />
+                <ViewComponent key={view.id} view={view} auth={this.props.auth} />
             )
           })
         }        

@@ -23,7 +23,7 @@ class UserContainer extends Component {
       <div className='user-container'>
         <UserComponent user={user} auth={auth} />
         <ReviewsContainer reviews={reviews} type={'user'}/>
-        <ViewsContainer user={user} views={views} />
+        <ViewsContainer user={user} views={views} auth={auth} />
       </div>
     )
   }  
