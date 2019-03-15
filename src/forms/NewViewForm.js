@@ -8,9 +8,9 @@ class NewViewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie_id: props.movie.id,
-      user_id: props.user.id,
-    };
+      movie_id: this.props.movie.id,
+      user_id: this.props.user.id,
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,7 +23,7 @@ class NewViewForm extends React.Component {
         throw response.errors;
       } else {
         // this is probably not needed since it's only being rendered on this same page.
-        this.props.history.push(`/movies/${response.movie_id}`)
+        this.props.history.push(`/movies/${response.current.movie_id}`)
         console.log('createView returned true.')
       }
     })

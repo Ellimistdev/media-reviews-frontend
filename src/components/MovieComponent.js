@@ -10,7 +10,7 @@ const MovieComponent = props => {
       <div className='data wrapper'>
         <MovieTitleComponent type={props.type} title={props.movie.title} />
         {props.type === 'show' && <MovieDataComponent movie={props.movie} /> }
-        {props.type === 'show' && props.auth.authenticated && <NewViewForm movie={props.movie} user={props.auth.user} /> }
+        {props.type === 'show' && props.auth.authenticated && <NewViewForm movie={props.movie}/> }
       </div>
     </div>
   );
