@@ -8,8 +8,7 @@ This is a simplified version of the [previous media reviews](https://github.com/
 
 ## Installation
 
-First, [install and configure the API](https://github.com/endotnick/media-reviews-api)
-
+[Install and configure the API](https://github.com/endotnick/media-reviews-api)
 
 Clone the repo and install dependencies
 
